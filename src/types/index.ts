@@ -1,27 +1,26 @@
 export interface Payload {
-  //attention:
-  //remove these from comment so you can expand tables uses
-
-  //   e: string;
-  //   E: number;
+  e: string;
+  E: number;
   s: string;
-  //   p: string;
+  p: string;
   P: string;
-  //   w: string;
+  w: string;
   c: string;
-  //   Q: string;
-  //   o: string;
-  //   h: string;
-  //   l: string;
-  //   v: string;
-  //   q: string;
-  //   O: number;
-  //   C: number;
-  //   F: number;
-  //   L: number;
-  //   n: number;
+  Q: string;
+  o: string;
+  h: string;
+  l: string;
+  v: string;
+  q: string;
+  O: number;
+  C: number;
+  F: number;
+  L: number;
+  n: number;
 }
 
-export interface TableViewProps {
-  tableData?: Payload[];
+export interface UseWebSocketResult {
+  data: Payload[];
+  subscribe: (symbols: string[]) => void;
+  unsubscribe: (symbols: string[]) => void;
 }

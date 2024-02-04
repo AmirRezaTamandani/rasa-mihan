@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ezCrypto?(Rasa Mihan challenge)",
+  title: "Rasa Mihan challenge",
   description: "A test for Rasa mihan employment ",
 };
 
@@ -20,8 +20,9 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
+          "pt-4"
           //attention:
-          //this will center all of the project , remove cn and the style so you could
+          //remove cn and the style so you could
           //keep the font and ditch this disaster
         )}
       >

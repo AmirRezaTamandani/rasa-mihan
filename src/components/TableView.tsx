@@ -1,28 +1,29 @@
-import { TableViewProps } from "@/types";
+"use client";
+import React, { useEffect } from "react";
+import { useWebSocket } from "@/hooks/useWebSocket";
 
-const TableView: React.FC<TableViewProps> = ({ tableData }) => {
-  if (!tableData) {
-//attention:
-//this isn't an optimal way for loading , it is better to use the 
-//file management technique 
-    return <p>Loading...</p>;
-  }
+const TableView: React.FC = () => {
+  const { data, subscribe, unsubscribe } = useWebSocket(
+    "wss://fstream.binance.com"
+  );
 
-  {
-    /* add:
-    you can add more rows to the table with this structure
-    */
-  }
-  const tableRows = tableData.map((data) => (
-    <div key={data.s} className="flex  items-center">
-      <div className="flex-1">{data.s}</div>
+  useEffect(() => {
+    subscribe(["ticker@arr"]);
+
+    return () => {
+      unsubscribe(["ticker@arr"]);
+    };
+  }, [subscribe, unsubscribe]);
+
+  const tableRows = data.map((item) => (
+    <div key={item.s} className="flex items-center">
+      <div className="flex-1">{item.s}</div>
       <div>
-        <div className="flex-1">{data.c}</div>
-        <div className="flex-1 text-xs">{data.P}%</div>
+        <div className="flex-1 ">{item.c}</div>
+        <div className="flex-1 text-xs">{item.P}%</div>
       </div>
     </div>
   ));
-
   return <div>{tableRows}</div>;
 };
 
